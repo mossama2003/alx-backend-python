@@ -12,4 +12,4 @@ def to_str (n:float)-> str:
 	Returns:
 		str: string
 	"""
-	return str(n)
+return str(n)
