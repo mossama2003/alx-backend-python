@@ -7,10 +7,10 @@ import math
 
 def to_str (n:float)-> str:
 		"""_summary_
-		Args:
+	Args:
 		n (float): float
-		
-		Returns:
+
+	Returns:
 		str: string
 		"""
 	
