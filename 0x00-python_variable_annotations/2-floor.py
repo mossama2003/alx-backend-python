@@ -7,12 +7,10 @@ import math
 
 def floor(n: float) -> int:
     """
-Args:
-n (float): float
+    Args:
+    n (float): float
 
-Returns:
-floar: int
-"""
-
-
-return math.floor(n)
+    Returns:
+    floar: int
+    """
+    return math.floor(n)
