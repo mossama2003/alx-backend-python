@@ -2,6 +2,7 @@
 """ 101-safely_get_value.py """
 from typing import Sequence, Any, Union, Mapping, TypeVar
 
+
 T = TypeVar("T", bound=Any)
 
 def safely_get_value(
