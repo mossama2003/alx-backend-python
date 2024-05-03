@@ -4,8 +4,8 @@ that takes a string str1 and a string str2
 as arguments and returns a concatenated string"""
 
 
-def concat(str1: str, str2: str)-> str:
-	"""_summary_
+def concat(str1: str, str2: str) -> str:
+    """_summary_
 
 	Args:
 		str1 (string): string
