@@ -7,12 +7,12 @@ import math
 
 
 def to_str(n: float) -> str:
-    """_summary_
+  """_summary_
 
-		Args:
-		n (float): float
+	Args:
+	n (float): float
 
-		Returns:
-		str: string
-		"""
-		return str(n)
+	Returns:
+	str: string
+	"""
+	return str(n)
