@@ -5,7 +5,7 @@ as arguments and returns a concatenated string"""
 
 
 def concat(str1: str, str2: str) -> str:
-	"""_summary_
+    """_summary_
 
     Args:
     str1 (string): string
@@ -14,4 +14,6 @@ def concat(str1: str, str2: str) -> str:
     Returns:
     string: a concatenated string
     """
-	return str1 + str2
+
+
+return str1 + str2
