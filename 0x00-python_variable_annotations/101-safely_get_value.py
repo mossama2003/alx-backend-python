@@ -10,6 +10,6 @@ def safely_get_value(
 ) -> Union[Any, T]:
   """safely_get_value"""
   if key in dct:
-    return dct[key]
+  return dct[key]
   else:
-    return default
+  return default
