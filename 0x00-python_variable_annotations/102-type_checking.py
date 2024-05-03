@@ -1,20 +1,16 @@
+#!/usr/bin/env python3
+""" 102-type_checking.py """
+from typing import Tuple, List, Any
 
-from typing import Tuple, Any, Union, Sequence,List
 
-
-def zoom_array(lst: Sequence[int], factor: Union[int, float] = 2) -> Tuple[Union[int, float]]:
-
-    if isinstance(factor, float):
-        factor = int(factor)
-    zoomed_in: List[Union[int, float]]= [
-        item for item in lst
-        for i in range(factor)
-    ]
+def zoom_array(lst: Tuple, factor: int = 2) -> List:
+    """zoom_array"""
+    zoomed_in: List = [item for item in lst for i in range(factor)]
     return zoomed_in
 
 
-array = [12, 72, 91]
+array = (12, 72, 91)
 
 zoom_2x = zoom_array(array)
 
-zoom_3x = zoom_array(array, 3.0)
+zoom_3x = zoom_array(array, 3)
