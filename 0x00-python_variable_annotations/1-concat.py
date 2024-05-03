@@ -12,6 +12,6 @@ str1 (string): string
 str2 (string): string
 
 Returns:
-	string: a concatenated string
-	"""
+string: a concatenated string
+"""
 	return str1 + str2
