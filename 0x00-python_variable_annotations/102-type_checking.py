@@ -4,9 +4,9 @@ from typing import Tuple, List, Any
 
 
 def zoom_array(lst: Tuple, factor: int = 2) -> List:
-    """zoom_array"""
-    zoomed_in: List = [item for item in lst for i in range(factor)]
-    return zoomed_in
+"""zoom_array"""
+zoomed_in: List = [item for item in lst for i in range(factor)]
+return zoomed_in
 
 
 array = (12, 72, 91)
