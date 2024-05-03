@@ -10,7 +10,6 @@ def to_str (n:float)-> str:
 
 	Args:
 		n (float): float
-
 	Returns:
 		str: string
 	"""
