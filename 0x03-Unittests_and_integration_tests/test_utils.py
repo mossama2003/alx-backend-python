@@ -1,58 +1,61 @@
 #!/usr/bin/env python3
-""" A script to unit test for utils.access_nested_map
-"""
-
+"""Test for the utils module"""
 import unittest
-import requests
-from unittest import mock
-from unittest.mock import patch
 from parameterized import parameterized
 from utils import access_nested_map, get_json, memoize
+from unittest.mock import MagicMock, patch, Mock
 
 
 class TestAccessNestedMap(unittest.TestCase):
-    """ A class to test utils.access_nested_map"""
-    @parameterized.expand([
-        ({"a": 1}, ("a",), 1),
-        ({"a": {"b": 2}}, ("a",), {'b': 2}),
-        ({"a": {"b": 2}}, ("a", "b"), 2),
+    """TestAccessNestedMap class"""
 
-        ])
+    @parameterized.expand(
+        [
+            ({"a": 1}, "a", 1),
+            ({"a": {"b": 2}}, ("a",), {"b": 2}),
+            ({"a": {"b": 2}}, ("a", "b"), 2),
+        ]
+    )
+    def test_access_nested_map(self, nested_map, path, output) -> None:
+        """test access_nested_map"""
+        self.assertEqual(access_nested_map(nested_map, path), output)
 
-    def test_access_nested_map(self, dict, path, expected):
-        """Test the access of a nested map."""
-        result = access_nested_map(dict, path)
-        self.assertEqual(result, expected)
-
-    @parameterized.expand([
-        ({}, ("a",), KeyError, 'a'),
-        ({"a": 1}, ("a", "b"), KeyError, 'b')
-    ])
-    def test_access_nested_map_exception(self, dict, path, expected, expected_key):
-        with self.assertRaises(expected):
-            access_nested_map(dict, path)
+    @parameterized.expand(
+        [
+            ({}, ("a",), KeyError),
+            ({"a": 1}, ("a", "b"), KeyError),
+        ]
+    )
+    def test_access_nested_map_exception(self, nested_map, path, error):
+        """test access_nested_map using invalid inputs"""
+        with self.assertRaises(error):
+            self.assertEqual(access_nested_map(nested_map, path))
 
 
 class TestGetJson(unittest.TestCase):
-    """ mock requests"""
-    @parameterized.expand([
-        ("http://example.com", {"payload": True}),
-        ("http://holberton.io", {"payload": False})
-    ])
-    @mock.patch('requests.get')
-    def test_get_json(self,  test_url, test_payload, mock_get):
-        """ test that utils.get_json returns the expected result. """
-        mock_get.return_value.json.return_value = test_payload
+    """Class for Testing Get Json"""
+
+    @parameterized.expand(
+        [
+            ("http://example.com", {"payload": True}),
+            ("http://holberton.io", {"payload": False}),
+        ]
+    )
+    @patch("requests.get")
+    def test_get_json(self, test_url, test_payload, mock_requests_get) -> None:
+        """test get_json using by patching requests.getreturn test_payload"""
+        mock_json = Mock(return_value=test_payload)
+        mock_requests_get.return_value.json = mock_json
         result = get_json(test_url)
-        mock_get.assert_called_once_with(test_url)
         self.assertEqual(result, test_payload)
+        mock_requests_get.assert_called_once_with(test_url)
 
 
 class TestMemoize(unittest.TestCase):
-    """to mock a_method. Test that when calling a_property twice,
-    """
+    """Class for Testing Memoize"""
+
     def test_memoize(self):
-        """to mock a_method. Test that when calling a_property twice"""
+        """Test memoize"""
 
         class TestClass:
 
@@ -63,9 +66,14 @@ class TestMemoize(unittest.TestCase):
             def a_property(self):
                 return self.a_method()
 
-        with patch.object(TestClass, 'a_method', return_value=42) as mock_method:
-            inst = TestClass()
-            inst.a_property
-            inst.a_property
+        with patch.object(TestClass, "a_method") as mock_a_method:
+            mock_a_method.return_value = 10
 
-            mock_method.assert_called_once()
+            instance_of_test_class = TestClass()
+            res = instance_of_test_class.a_property
+            self.assertEqual(instance_of_test_class.a_property, res)
+            mock_a_method.assert_called_once()
+
+
+if __name__ == "__main__":
+    unittest.main()
